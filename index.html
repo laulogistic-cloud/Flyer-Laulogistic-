@@ -3,1083 +3,790 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laulogistic – Flyer v3</title>
+<title>Laulogistic | L'Ingénierie de l'Émotion</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 :root {
-  --navy: #0c1428;
-  --navy-mid: #132040;
-  --navy-card: #172448;
+  --navy-deep: #030712;
+  --navy-mid: #0c1428;
+  --navy-card: #111827;
+  --gold-bright: #f3d38c;
   --gold: #c8a84b;
   --gold-warm: #d9b96a;
   --gold-pale: #f0dfa0;
-  --cream: #fdf8f0;
   --white: #ffffff;
-  --muted: rgba(255,255,255,0.55);
-  --warm-line: rgba(200,168,75,0.3);
+  --warm-line: rgba(200,168,75,0.2);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(200, 168, 75, 0.15);
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background: #0e0e1a;
+  background: var(--navy-deep);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
-  padding: 48px 20px;
+  gap: 60px;
+  padding: 60px 20px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(200,168,75,0.07) 0%, transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(200,168,75,0.07) 0%, transparent 30%);
+  z-index: -1;
 }
 
 .label {
   color: var(--gold);
   font-size: 10px;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  margin-bottom: -36px;
-  align-self: flex-start;
-  margin-left: calc(50% - 210px);
+  margin-bottom: -30px;
+  opacity: 0.8;
 }
 
-/* ───── PAGE ───── */
 .flyer {
-  width: 420px;
-  background: var(--navy);
-  color: var(--white);
+  width: 460px;
+  background: var(--navy-mid);
   position: relative;
-  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 50px 120px rgba(0,0,0,0.9);
+  border: 1px solid rgba(200,168,75,0.1);
 }
 
-.stripe { height: 3px; background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-warm) 60%, transparent 100%); }
+.gold-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
 
 /* ══════════ RECTO ══════════ */
 .recto { display: flex; flex-direction: column; }
 
 .hero {
-  padding: 28px 34px 0;
+  padding: 40px 34px 0;
+  text-align: center;
   position: relative;
 }
 
 .top-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 22px;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 .logo-mark {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .logo-diamond {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--gold);
   transform: rotate(45deg);
-  flex-shrink: 0;
+  box-shadow: 0 0 15px var(--gold);
 }
 .logo-text {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 4px;
   color: var(--gold);
   text-transform: uppercase;
 }
+
 .local-pill {
-  background: rgba(200,168,75,0.12);
-  border: 1px solid rgba(200,168,75,0.35);
-  border-radius: 20px;
+  border: 1px solid var(--gold);
   padding: 4px 12px;
-  font-size: 10px;
+  font-size: 9px;
   color: var(--gold-warm);
-  letter-spacing: 0.5px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 44px;
+  font-size: 46px;
   font-weight: 700;
-  line-height: 1.08;
-  color: var(--white);
-  margin-bottom: 4px;
+  line-height: 1.1;
+  margin-bottom: 15px;
+  background: linear-gradient(to bottom, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .hero-title em {
   color: var(--gold-warm);
   font-style: italic;
+  -webkit-text-fill-color: var(--gold-warm);
 }
 
 .hero-sub {
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 14px;
+  margin-bottom: 25px;
 }
 
 .hero-accroche {
-  font-size: 13px;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.6;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
   font-style: italic;
-  border-left: 2px solid var(--gold);
-  padding-left: 14px;
-  margin-bottom: 22px;
+  margin-bottom: 30px;
 }
 
-.arc-deco {
-  position: absolute;
-  top: -50px; right: -50px;
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  border: 1px solid rgba(200,168,75,0.12);
-  pointer-events: none;
+/* UNIVERS */
+.universe-section {
+  padding: 0 34px 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
-.arc-deco2 {
-  position: absolute;
-  top: -20px; right: -20px;
-  width: 90px; height: 90px;
-  border-radius: 50%;
-  border: 1px solid rgba(200,168,75,0.08);
-  pointer-events: none;
+.universe-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.3s;
+}
+.universe-card:hover {
+  border-color: var(--gold);
+  background: rgba(200,168,75,0.05);
+  transform: scale(1.02);
+}
+.universe-icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px var(--gold));
+}
+.universe-content strong {
+  display: block;
+  font-size: 13px;
+  color: var(--gold-warm);
+  margin-bottom: 3px;
+}
+.universe-content span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.4;
 }
 
 .divider {
   height: 1px;
-  background: var(--warm-line);
+  background: linear-gradient(90deg, transparent, var(--warm-line), transparent);
   margin: 0 34px;
 }
 
-/* ── PRIX EN VEDETTE (nouveau bloc) ── */
-.prix-vedette {
-  margin: 16px 34px 0;
-  background: rgba(200,168,75,0.06);
-  border: 1px solid rgba(200,168,75,0.2);
-  border-radius: 8px;
-  padding: 10px 14px 8px;
-}
-.prix-vedette-label {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.prix-badges {
-  display: flex;
-  gap: 8px;
-  justify-content: space-between;
-}
-.prix-badge {
-  flex: 1;
+/* PRIX STRATÉGIQUE */
+.pricing-highlight {
+  margin: 30px 34px;
   text-align: center;
-  background: var(--navy-mid);
-  border-radius: 6px;
-  padding: 8px 4px;
-  border: 1px solid rgba(255,255,255,0.07);
 }
-.prix-badge.bestseller {
-  background: var(--gold);
-  border-color: var(--gold);
-}
-.prix-badge.bestseller .prix-amount { color: var(--navy); }
-.prix-badge.bestseller .prix-name { color: rgba(12,20,40,0.7); }
-.prix-amount {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--gold-pale);
-  line-height: 1;
-  margin-bottom: 2px;
-}
-.prix-name {
-  font-size: 9px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.3;
-  font-weight: 500;
-}
-
-/* ── Packs ── */
-.packs-section { padding: 14px 34px 16px; }
-
-.section-head {
-  font-size: 9.5px;
+.pricing-label {
+  font-size: 10px;
   letter-spacing: 3px;
-  text-transform: uppercase;
   color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: block;
+}
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
-.section-head::after {
-  content: '';
+.price-item {
+  background: var(--navy-card);
+  border: 1px solid var(--glass-border);
+  padding: 12px 5px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.price-item.featured {
+  background: linear-gradient(135deg, var(--gold), var(--gold-warm));
+  border-color: var(--gold-bright);
+  box-shadow: 0 10px 20px rgba(200,168,75,0.2);
+}
+.price-item.featured * { color: var(--navy-deep) !important; }
+.price-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold-pale);
+  display: block;
+}
+.price-name {
+  font-size: 8px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 5px;
+  display: block;
+}
+
+/* SOLUTIONS SUR MESURE */
+.solutions-section {
+  padding: 0 34px 30px;
+}
+.solutions-title {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.solutions-title::after {
+  content: "";
   flex: 1;
   height: 1px;
   background: var(--warm-line);
 }
 
-.packs-col { display: flex; flex-direction: column; gap: 7px; }
-
-.pack {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 8px;
-  padding: 11px 14px;
+.solution-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+.solution-card:hover {
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.05);
+}
+.sol-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
 }
-.pack.hot {
-  background: rgba(200,168,75,0.09);
-  border-color: rgba(200,168,75,0.32);
+.sol-icon {
+  width: 36px; height: 36px;
+  background: rgba(200,168,75,0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
 }
-.pack-icon {
-  width: 34px; height: 34px;
-  border-radius: 8px;
-  background: rgba(200,168,75,0.14);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.pack-body { flex: 1; min-width: 0; }
-.pack-name {
-  font-size: 12px;
-  font-weight: 600;
+.sol-text strong {
+  display: block;
+  font-size: 13px;
   color: var(--gold-warm);
   margin-bottom: 2px;
 }
-.pack-desc {
-  font-size: 10.5px;
+.sol-text span {
+  font-size: 11px;
   color: rgba(255,255,255,0.5);
-  line-height: 1.35;
 }
-.pack-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 3px;
-  flex-shrink: 0;
-}
-.pack-price {
+.sol-price {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--white);
-  line-height: 1;
-}
-.pack.hot .pack-price { color: var(--gold-pale); }
-.pack-tag {
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: var(--navy);
-  background: var(--gold);
-  border-radius: 20px;
-  padding: 2px 8px;
-  white-space: nowrap;
-}
-.pack-install {
-  font-size: 8.5px;
-  color: rgba(255,255,255,0.35);
-  white-space: nowrap;
 }
 
-/* DJ note */
-.dj-note {
-  margin-top: 8px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  font-style: italic;
-  padding-left: 4px;
-}
-.dj-note span { color: var(--gold); font-style: normal; }
-
-/* Impact phrase */
-.impact-box {
-  margin: 10px 34px 16px;
-  background: rgba(200,168,75,0.08);
-  border: 1px solid rgba(200,168,75,0.22);
-  border-radius: 8px;
-  padding: 13px 18px;
+.impact-footer {
+  margin: 0 34px 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(200,168,75,0.1), transparent);
+  border-left: 3px solid var(--gold);
   text-align: center;
 }
-.impact-phrase {
+.impact-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
+  font-size: 18px;
   font-style: italic;
   color: var(--gold-pale);
   line-height: 1.5;
 }
 
-/* CTA strip */
-.cta-strip {
-  margin: 0 34px 24px;
+.cta-elite {
+  margin: 0 34px 40px;
   background: var(--gold);
-  border-radius: 8px;
-  padding: 13px 16px;
+  padding: 15px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  color: var(--navy-deep);
+  font-weight: 600;
+  font-size: 12px;
+  box-shadow: 0 10px 20px rgba(200,168,75,0.3);
+  cursor: pointer;
 }
-.cta-strip-text {
-  flex: 1;
-  font-size: 11.5px;
-  color: var(--navy);
-  font-weight: 500;
-  line-height: 1.45;
-}
-.cta-arrow {
-  width: 32px; height: 32px;
+.cta-btn {
+  width: 30px; height: 30px;
+  background: var(--navy-deep);
   border-radius: 50%;
-  background: var(--navy);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
 }
 
 /* ══════════ VERSO ══════════ */
 .verso { display: flex; flex-direction: column; }
 
 .verso-hero {
-  padding: 26px 34px 18px;
-  position: relative;
+  padding: 40px 34px 0;
+  text-align: center;
 }
-
 .verso-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
-  color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 5px;
-  margin-top: 16px;
+  margin-bottom: 10px;
 }
 .verso-title em { color: var(--gold-warm); font-style: italic; }
-
 .verso-sub {
-  font-size: 11.5px;
+  font-size: 13px;
   color: rgba(255,255,255,0.5);
-  font-style: italic;
-  line-height: 1.5;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
 
-/* ── Urgence ── */
-.urgence-box {
-  margin: 0 34px 16px;
-  background: rgba(200,168,75,0.1);
-  border: 1px solid rgba(200,168,75,0.35);
-  border-radius: 8px;
-  padding: 13px 16px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 0 34px 30px;
 }
-.urgence-icon {
-  width: 32px; height: 32px;
-  border-radius: 7px;
-  background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
+.trust-item {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 20px 15px;
+  border-radius: 15px;
+  text-align: center;
 }
-.urgence-text-wrap {}
-.urgence-title {
-  font-size: 12px;
+.trust-ico {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: block;
+}
+.trust-title {
+  font-size: 11px;
   font-weight: 600;
   color: var(--gold-warm);
-  margin-bottom: 3px;
-}
-.urgence-body {
-  font-size: 11px;
-  color: rgba(255,255,255,0.62);
-  line-height: 1.5;
-}
-
-/* ── Témoignages ── */
-.temoignages-section { padding: 0 34px 16px; }
-
-.temoignage {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 7px;
-  position: relative;
-}
-.temoignage:last-child { margin-bottom: 0; }
-.temoignage-quote {
-  font-size: 11px;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.55;
-  font-style: italic;
-  padding-left: 14px;
-  border-left: 2px solid var(--gold);
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
-.temoignage-stars {
-  display: flex;
-  gap: 2px;
-  margin-bottom: 4px;
-  padding-left: 14px;
-}
-.star { color: var(--gold); font-size: 10px; }
-.temoignage-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 14px;
-}
-.temoignage-auteur {
+.trust-text {
   font-size: 10px;
-  font-weight: 600;
-  color: var(--gold-warm);
-}
-.temoignage-badge {
-  font-size: 8.5px;
-  background: rgba(200,168,75,0.13);
-  border: 1px solid rgba(200,168,75,0.25);
-  border-radius: 10px;
-  padding: 2px 8px;
-  color: var(--gold);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.4;
 }
 
-/* ── Contact card ── */
-.contact-card {
-  margin: 0 34px 16px;
-  background: var(--navy-card);
-  border: 1px solid rgba(200,168,75,0.25);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.contact-top {
-  padding: 16px 20px 12px;
-  border-bottom: 1px solid rgba(200,168,75,0.12);
-}
-.contact-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 3px;
-}
-.contact-role {
-  font-size: 10.5px;
-  color: var(--gold);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.contact-lines {
-  padding: 12px 20px;
+.urgent-box {
+  margin: 0 34px 30px;
+  background: linear-gradient(135deg, rgba(200,168,75,0.15), rgba(200,168,75,0.05));
+  border: 1px solid var(--gold);
+  padding: 20px;
+  border-radius: 15px;
   display: flex;
-  flex-direction: column;
-  gap: 9px;
+  gap: 15px;
+  align-items: center;
 }
-.c-line {
+.urgent-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.urgent-text strong {
+  display: block;
+  font-size: 13px;
+  color: var(--gold-warm);
+  margin-bottom: 5px;
+}
+.urgent-text span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+}
+
+.reviews-section {
+  padding: 0 34px 30px;
+}
+.reviews-title {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.c-ico {
-  width: 28px; height: 28px;
-  border-radius: 7px;
-  background: rgba(200,168,75,0.13);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+.reviews-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--warm-line);
 }
-.c-val {
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.82);
+.review-card {
+  background: var(--glass);
+  border-left: 3px solid var(--gold);
+  padding: 15px;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 12px;
 }
-.c-val strong {
-  color: var(--white);
-  font-weight: 600;
+.review-stars {
+  color: var(--gold);
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+.review-quote {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
-.siret-line {
-  padding: 7px 20px 10px;
-  font-size: 9px;
-  color: rgba(255,255,255,0.25);
-  letter-spacing: 0.5px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-/* ── Final CTA ── */
-.final-cta {
-  margin: 0 34px 22px;
-  background: rgba(200,168,75,0.07);
-  border: 1px solid rgba(200,168,75,0.2);
-  border-radius: 8px;
-  padding: 13px 18px;
-  text-align: center;
-}
-.final-cta-title {
-  font-size: 12px;
+.review-author {
+  font-size: 11px;
   font-weight: 600;
   color: var(--gold-warm);
-  margin-bottom: 4px;
-  letter-spacing: 0.3px;
 }
-.final-cta-body {
-  font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.6;
+.review-tag {
+  font-size: 9px;
+  background: rgba(200,168,75,0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: var(--gold);
 }
 
-/* QR simulé */
-.qr-row {
-  margin: 0 34px 14px;
+.contact-luxury {
+  margin: 0 34px 30px;
+  background: linear-gradient(135deg, var(--navy-card), var(--navy-deep));
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.contact-header {
+  padding: 25px 20px 15px;
+  text-align: center;
+  background: rgba(200,168,75,0.05);
+}
+.contact-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--white);
+}
+.contact-header p {
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.contact-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.detail-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 15px;
 }
-.qr-box {
-  width: 56px; height: 56px;
-  background: var(--white);
-  border-radius: 6px;
-  padding: 5px;
-  flex-shrink: 0;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  gap: 1px;
+.detail-icon {
+  width: 35px; height: 35px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
 }
-.qr-cell { border-radius: 1px; background: #fff; }
-.qr-cell.b { background: #0c1428; }
-.qr-text {
+.detail-text {
+  font-size: 13px;
+}
+.detail-text strong {
+  display: block;
   font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.55;
+  color: var(--gold-warm);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.siret-footer {
+  padding: 10px 20px;
+  font-size: 9px;
+  text-align: center;
+  opacity: 0.4;
+  border-top: 1px solid var(--glass-border);
+}
+
+.final-gold-cta {
+  margin: 0 34px 40px;
+  text-align: center;
+  padding: 20px;
+  border: 1px dashed var(--gold);
+  border-radius: 15px;
+}
+.final-gold-cta p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--gold-pale);
   font-style: italic;
 }
-.qr-text strong { color: var(--gold-warm); font-style: normal; font-weight: 500; }
 </style>
 </head>
 <body>
 
-<div class="label">Recto</div>
+<div class="label">L'Ingénierie de l'Émotion</div>
 
 <!-- ══════════════════════════ RECTO ══════════════════════════ -->
 <div class="flyer recto">
-  <div class="stripe"></div>
+  <div class="gold-stripe"></div>
 
   <div class="hero">
-    <div class="arc-deco"></div>
-    <div class="arc-deco2"></div>
-
     <div class="top-row">
       <div class="logo-mark">
         <div class="logo-diamond"></div>
         <div class="logo-text">Laulogistic</div>
       </div>
-      <div class="local-pill">Île-de-France · Local</div>
+      <div class="local-pill">Île-de-France · Prestige</div>
     </div>
 
-    <h1 class="hero-title">Vous organisez<br>un <em>événement&nbsp;?</em></h1>
-    <div class="hero-sub">Son &nbsp;·&nbsp; Micros &nbsp;·&nbsp; Lumière &nbsp;·&nbsp; Ambiance &nbsp;·&nbsp; Assistance Technique</div>
-    <p class="hero-accroche">20 ans d'expérience. Installation incluse. Vous profitez de votre événement, nous gérons le reste.</p>
+    <h1 class="hero-title">Sublimer vos<br><em>moments uniques</em></h1>
+    <div class="hero-sub">Son · Lumière · Logistique · Coordination</div>
+    <p class="hero-accroche">L'expertise technique qui s'efface pour laisser place à l'émotion. 20 ans de rigueur pour un résultat impeccable.</p>
   </div>
 
-  <!-- Prix en vedette — premier élément vu -->
-  <div class="prix-vedette">
-    <div class="prix-vedette-label">Nos tarifs — Installation incluse</div>
-    <div class="prix-badges">
-      <div class="prix-badge">
-        <div class="prix-amount">129€</div>
-        <div class="prix-name">Micro &amp;<br>Cérémonie</div>
+  <div class="universe-section">
+    <div class="universe-card">
+      <div class="universe-icon">💍</div>
+      <div class="universe-content">
+        <strong>Univers Mariage & Luxe</strong>
+        Un partenaire invisible pour Wedding Planners. Discrétion, ponctualité et esthétique.
       </div>
-      <div class="prix-badge">
-        <div class="prix-amount">149€</div>
-        <div class="prix-name">Ambiance<br>Lumière</div>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon">⛪</div>
+      <div class="universe-content">
+        <strong>Univers Solennel & Cultes</strong>
+        Acoustique cristalline pour vos cérémonies. Chaque mot est entendu, chaque silence est respecté.
       </div>
-      <div class="prix-badge bestseller">
-        <div class="prix-amount">249€</div>
-        <div class="prix-name">Soirée<br>Essentielle ★</div>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon">🏢</div>
+      <div class="universe-content">
+        <strong>Univers Corporate & Business</strong>
+        Efficacité et zéro stress pour vos séminaires. Une technique robuste pour des idées fortes.
       </div>
-      <div class="prix-badge">
-        <div class="prix-amount">390€</div>
-        <div class="prix-name">Événement<br>Complet</div>
+    </div>
+    <div class="universe-card">
+      <div class="universe-icon">👥</div>
+      <div class="universe-content">
+        <strong>Univers Privé & Intime</strong>
+        Solutions haut de gamme modulables. Le prestige accessible pour vos petits groupes.
       </div>
     </div>
   </div>
 
-  <div class="divider" style="margin-top: 16px;"></div>
+  <div class="divider"></div>
 
-  <!-- Packs détaillés -->
-  <div class="packs-section">
-    <div class="section-head">Nos solutions</div>
+  <div class="pricing-highlight">
+    <span class="pricing-label">Investissement Sérénité <span style="font-size: 8px; opacity: 0.7;">(Min. 4h)</span></span>
+    <div class="price-grid">
+      <div class="price-item">
+        <span class="price-val">190€</span>
+        <span class="price-name">Cérémonie</span>
+      </div>
+      <div class="price-item">
+        <span class="price-val">220€</span>
+        <span class="price-name">Ambiance</span>
+      </div>
+      <div class="price-item featured">
+        <span class="price-val">350€</span>
+        <span class="price-name">Essentiel ★</span>
+      </div>
+      <div class="price-item">
+        <span class="price-val">550€</span>
+        <span class="price-name">Prestige</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="solutions-section">
+    <div class="solutions-title">Solutions Clé en Main</div>
     <div class="packs-col">
-
-      <div class="pack">
-        <div class="pack-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
+      <div class="solution-card">
+        <div class="sol-info">
+          <div class="sol-icon">🎤</div>
+          <div class="sol-text">
+            <strong>Signature Parole</strong>
+            <span>L'excellence pour vos discours et prêches</span>
+          </div>
         </div>
-        <div class="pack-body">
-          <div class="pack-name">Pack Micro &amp; Cérémonie</div>
-          <div class="pack-desc">Micros, prise de parole, animation simple</div>
-        </div>
-        <div class="pack-right">
-          <div class="pack-price">129€</div>
-          <div class="pack-install">install. incluse</div>
-        </div>
+        <div class="sol-price">190€</div>
       </div>
-
-      <div class="pack">
-        <div class="pack-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <div class="solution-card">
+        <div class="sol-info">
+          <div class="sol-icon">✨</div>
+          <div class="sol-text">
+            <strong>Signature Lumière</strong>
+            <span>Sublimer l'espace et l'atmosphère</span>
+          </div>
         </div>
-        <div class="pack-body">
-          <div class="pack-name">Pack Ambiance Lumière</div>
-          <div class="pack-desc">Mise en lumière de salle, atmosphère chaleureuse</div>
-        </div>
-        <div class="pack-right">
-          <div class="pack-price">149€</div>
-          <div class="pack-install">install. incluse</div>
-        </div>
+        <div class="sol-price">220€</div>
       </div>
-
-      <div class="pack hot">
-        <div class="pack-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="4" stroke="#c8a84b" stroke-width="1.7"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
+      <div class="solution-card" style="border-color: var(--gold);">
+        <div class="sol-info">
+          <div class="sol-icon">🎧</div>
+          <div class="sol-text">
+            <strong>Expérience Fusion</strong>
+            <span>L'équilibre parfait Son + Lumière</span>
+          </div>
         </div>
-        <div class="pack-body">
-          <div class="pack-name">Pack Soirée Essentielle</div>
-          <div class="pack-desc">Son + Lumière — la formule complète</div>
-        </div>
-        <div class="pack-right">
-          <div class="pack-price">249€</div>
-          <div class="pack-tag">Best-seller</div>
-        </div>
+        <div class="sol-price">350€</div>
       </div>
-
-      <div class="pack">
-        <div class="pack-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round"/>
-            <circle cx="9" cy="7" r="4" stroke="#c8a84b" stroke-width="1.7"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#c8a84b" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
+      <div class="solution-card">
+        <div class="sol-info">
+          <div class="sol-icon">🚀</div>
+          <div class="sol-text">
+            <strong>Immersion Totale</strong>
+            <span>Puissance, couverture et prestige</span>
+          </div>
         </div>
-        <div class="pack-body">
-          <div class="pack-name">Pack Événement Complet</div>
-          <div class="pack-desc">Solution renforcée, grands groupes</div>
-        </div>
-        <div class="pack-right">
-          <div class="pack-price">390€</div>
-          <div class="pack-install">install. incluse</div>
-        </div>
+        <div class="sol-price">550€</div>
       </div>
-
-    </div>
-    <div class="dj-note"><span>+</span> DJ et intervenants sur demande — devis sur mesure disponible</div>
-  </div>
-
-  <div class="impact-box">
-    <div class="impact-phrase">"Vous profitez de votre événement,<br>nous gérons le reste."</div>
-  </div>
-
-  <div class="cta-strip">
-    <div class="cta-strip-text">Gardez ce contact. Un besoin, un imprévu ou une future fête se règle simplement.</div>
-    <div class="cta-arrow">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8h10M9 4l4 4-4 4" stroke="#c8a84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
     </div>
   </div>
 
-  <div class="stripe"></div>
+  <div class="impact-footer">
+    <p class="impact-text">"La technique devient invisible,<br>l'émotion devient mémorable."</p>
+  </div>
+
+  <div class="cta-elite">
+    <span>Un projet d'exception ? Un besoin urgent ?<br>Contactez l'expert.</span>
+    <div class="cta-btn">→</div>
+  </div>
+  <div class="gold-stripe"></div>
 </div>
 
-
-<div class="label" style="margin-top: 8px;">Verso</div>
+<div class="label" style="margin-top: 8px;">L'Engagement Excellence</div>
 
 <!-- ══════════════════════════ VERSO ══════════════════════════ -->
 <div class="flyer verso">
-  <div class="stripe"></div>
+  <div class="gold-stripe"></div>
 
   <div class="verso-hero">
-    <div class="arc-deco"></div>
-    <div class="arc-deco2"></div>
-    <div class="logo-mark" style="margin-bottom: 12px;">
+    <div class="logo-mark" style="justify-content: center; margin-bottom: 20px;">
       <div class="logo-diamond"></div>
       <div class="logo-text">Laulogistic</div>
     </div>
-    <h2 class="verso-title">Pourquoi nous<br><em>faire confiance&nbsp;?</em></h2>
-    <p class="verso-sub">Un prestataire local, humain et sérieux — 20 ans d'expérience à votre service.</p>
+    <h2 class="verso-title">L'assurance d'un<br><em>succès total</em></h2>
+    <p class="verso-sub">Plus qu'un prestataire, un allié stratégique. 20 ans d'expertise pour transformer vos contraintes techniques en triomphes.</p>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- Urgence -->
-  <div class="urgence-box" style="margin-top: 16px;">
-    <div class="urgence-icon">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="#0c1428" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <line x1="12" y1="9" x2="12" y2="13" stroke="#0c1428" stroke-width="2" stroke-linecap="round"/>
-        <line x1="12" y1="17" x2="12.01" y2="17" stroke="#0c1428" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <span class="trust-ico">⚡</span>
+      <div class="trust-title">Réactivité</div>
+      <div class="trust-text">Intervention éclair en Île-de-France. Nous sauvons vos imprévus.</div>
     </div>
-    <div class="urgence-text-wrap">
-      <div class="urgence-title">Prestataire annulé au dernier moment ?</div>
-      <div class="urgence-body">Nous intervenons rapidement en Île-de-France. Un appel suffit — zéro stress technique, installation propre et discrète.</div>
+    <div class="trust-item">
+      <span class="trust-ico">🛠️</span>
+      <div class="trust-title">Discrétion</div>
+      <div class="trust-text">Installation invisible. On gère tout, vous brillez.</div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-ico">💎</span>
+      <div class="trust-title">Précision</div>
+      <div class="trust-text">Son cristallin, éclairage millimétré. Qualité studio.</div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-ico">🤝</span>
+      <div class="trust-title">Rigueur</div>
+      <div class="trust-text">Ponctualité absolue. Zéro stress technique.</div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- Témoignages -->
-  <div class="temoignages-section" style="padding-top: 16px;">
-    <div class="section-head">Ils nous font confiance</div>
-
-    <div class="temoignage">
-      <div class="temoignage-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <div class="temoignage-quote">Prestataire absent le matin même, Laurent est arrivé en 1h. Matériel pro, son parfait. Un vrai soulagement.</div>
-      <div class="temoignage-meta">
-        <div class="temoignage-auteur">Marie T. — Mariage en urgence</div>
-        <div class="temoignage-badge">Fiabilité</div>
-      </div>
+  <div class="urgent-box">
+    <div class="urgent-icon">⚠️</div>
+    <div class="urgent-text">
+      <strong>Urgence Technique ?</strong>
+      <span>Prestataire absent ? Panne critique ? Nous intervenons en urgence pour garantir la continuité de votre événement.</span>
     </div>
-
-    <div class="temoignage">
-      <div class="temoignage-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <div class="temoignage-quote">Enfin une sonorisation claire pour nos cérémonies. Aucune coupure micro, lumière magnifique. On recommande les yeux fermés.</div>
-      <div class="temoignage-meta">
-        <div class="temoignage-auteur">Association Culturelle 94</div>
-        <div class="temoignage-badge">Qualité</div>
-      </div>
-    </div>
-
-    <div class="temoignage">
-      <div class="temoignage-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <div class="temoignage-quote">On a juste donné l'heure, Laurent a tout géré. Installation propre et discrète. On a pu profiter de la fête sans stress.</div>
-      <div class="temoignage-meta">
-        <div class="temoignage-auteur">Famille Ngozi — Anniversaire 50 ans</div>
-        <div class="temoignage-badge">Simplicité</div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- QR Code réel — laulogistic-event -->
-  <div class="qr-row">
-    <a href="https://laulogistic.my.canva.site/laulogistic-event" target="_blank" style="flex-shrink:0;display:block;width:68px;height:68px;background:white;border-radius:6px;padding:4px;box-sizing:border-box;">
-      <svg style="width:64px;height:64px;border-radius:6px;background:white;padding:3px;" width="90.70866141732284" height="90.70866141732284" preserveAspectRatio="xMinYMin meet" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<title>...</title>
-	<desc>...</desc>
-	<clipPath id="clip">
-		<rect x="0" y="0" width="90.70866141732284" height="90.70866141732284"/>
-	</clipPath>
-	<g id="group" transform="scale(1,-1) translate(0,-90)" style="clip-path: url(#clip)">
-		<g transform="">
-			<g transform="">
-				<rect x="0" y="0" width="90.70866141732284" height="90.70866141732284" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: none; fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="78.4507341987657" width="17.161098105979995" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="78.4507341987657" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="46.58012343051713" y="78.4507341987657" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="51.48329431793999" y="78.4507341987657" width="9.806341774845713" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="78.4507341987657" width="17.16109810597999" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="75.99914875505428" width="2.451585443711428" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="75.99914875505428" width="2.4515854437114264" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="75.99914875505428" width="4.903170887422853" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="75.99914875505428" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="75.99914875505428" width="4.90317088742286" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="75.99914875505428" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="75.99914875505428" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="75.99914875505428" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="75.99914875505428" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="73.54756331134286" width="2.451585443711428" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="73.54756331134286" width="7.354756331134286" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="73.54756331134286" width="2.4515854437114264" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="73.54756331134286" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="73.54756331134286" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="73.54756331134286" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="73.54756331134286" width="7.354756331134283" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="73.54756331134286" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="73.54756331134286" width="7.354756331134283" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="73.54756331134286" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="71.09597786763142" width="2.451585443711428" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="71.09597786763142" width="7.354756331134286" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="71.09597786763142" width="2.4515854437114264" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="71.09597786763142" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="71.09597786763142" width="4.90317088742286" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="71.09597786763142" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="71.09597786763142" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="71.09597786763142" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="71.09597786763142" width="7.354756331134283" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="71.09597786763142" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="68.64439242391998" width="2.451585443711428" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="68.64439242391998" width="7.354756331134286" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="68.64439242391998" width="2.4515854437114264" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="68.64439242391998" width="4.903170887422853" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="68.64439242391998" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="68.64439242391998" width="7.354756331134283" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="68.64439242391998" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="68.64439242391998" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="68.64439242391998" width="7.354756331134283" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="68.64439242391998" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="66.19280698020856" width="2.451585443711428" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="66.19280698020856" width="2.4515854437114264" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="66.19280698020856" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="66.19280698020856" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="66.19280698020856" width="4.90317088742286" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="46.58012343051713" y="66.19280698020856" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="51.48329431793999" y="66.19280698020856" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="66.19280698020856" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="66.19280698020856" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="66.19280698020856" width="2.451585443711423" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="63.741221536497136" width="17.161098105979995" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="63.741221536497136" width="2.45158544371143" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="63.741221536497136" width="17.16109810597999" height="2.451585443711423" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="61.289636092785706" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="61.289636092785706" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="46.58012343051713" y="61.289636092785706" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="51.48329431793999" y="61.289636092785706" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="61.289636092785706" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="58.838050649074276" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="17.161098105979995" y="58.838050649074276" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="58.838050649074276" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="58.838050649074276" width="14.709512662268573" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="58.838050649074276" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="58.838050649074276" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="73.54756331134284" y="58.838050649074276" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="56.38646520536285" width="9.806341774845713" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="22.064268993402855" y="56.38646520536285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="26.967439880825708" y="56.38646520536285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="56.38646520536285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="56.38646520536285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="56.38646520536285" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="56.38646520536285" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="71.09597786763142" y="56.38646520536285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="56.38646520536285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="53.93487976165142" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="19.612683549691425" y="53.93487976165142" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="53.93487976165142" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="53.93487976165142" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="53.93487976165142" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="53.93487976165142" width="12.257927218557143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="53.93487976165142" width="9.80634177484572" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="12.25792721855714" y="51.48329431793999" width="4.903170887422855" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="19.612683549691425" y="51.48329431793999" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="26.967439880825708" y="51.48329431793999" width="17.161098105979995" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="51.48329431793999" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="51.48329431793999" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="51.48329431793999" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="73.54756331134284" y="51.48329431793999" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="49.03170887422856" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="19.612683549691425" y="49.03170887422856" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="49.03170887422856" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="41.67695254309428" y="49.03170887422856" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="46.58012343051713" y="49.03170887422856" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="49.03170887422856" width="9.806341774845713" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="71.09597786763142" y="49.03170887422856" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="49.03170887422856" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="46.58012343051713" width="9.806341774845713" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="22.064268993402855" y="46.58012343051713" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="26.967439880825708" y="46.58012343051713" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="46.58012343051713" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="46.58012343051713" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="46.58012343051713" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="61.289636092785706" y="46.58012343051713" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="44.12853798680571" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="44.12853798680571" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="44.12853798680571" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="41.67695254309428" y="44.12853798680571" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="44.12853798680571" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="44.12853798680571" width="12.257927218557143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="17.161098105979995" y="41.67695254309428" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="41.67695254309428" width="22.064268993402855" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="41.67695254309428" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="71.09597786763142" y="41.67695254309428" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="41.67695254309428" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="39.22536709938285" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="17.161098105979995" y="39.22536709938285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="22.064268993402855" y="39.22536709938285" width="9.806341774845713" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="39.22536709938285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="39.22536709938285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="51.48329431793999" y="39.22536709938285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="39.22536709938285" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="66.19280698020856" y="39.22536709938285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="39.22536709938285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="36.77378165567143" width="7.354756331134286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="26.967439880825708" y="36.77378165567143" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="36.77378165567143" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="36.77378165567143" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="36.77378165567143" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="36.77378165567143" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="61.289636092785706" y="36.77378165567143" width="7.35475633113429" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="71.09597786763142" y="36.77378165567143" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="36.77378165567143" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="34.32219621196" width="2.451585443711428" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="34.32219621196" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="22.064268993402855" y="34.32219621196" width="4.903170887422856" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="34.32219621196" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="34.32219621196" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="34.32219621196" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="66.19280698020856" y="34.32219621196" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="34.32219621196" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="31.870610768248568" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="22.064268993402855" y="31.870610768248568" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="31.870610768248568" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="31.870610768248568" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="51.48329431793999" y="31.870610768248568" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="31.870610768248568" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="31.870610768248568" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="29.419025324537138" width="2.451585443711428" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="29.419025324537138" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="19.612683549691425" y="29.419025324537138" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="29.419025324537138" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="29.419025324537138" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="29.419025324537138" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="29.419025324537138" width="14.709512662268573" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="73.54756331134284" y="29.419025324537138" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="26.967439880825708" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="41.67695254309428" y="26.967439880825708" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="26.967439880825708" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="26.967439880825708" width="4.903170887422853" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="26.967439880825708" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="73.54756331134284" y="26.967439880825708" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="24.515854437114285" width="17.161098105979995" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="24.515854437114285" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="24.515854437114285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="24.515854437114285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="24.515854437114285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="24.515854437114285" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="24.515854437114285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="24.515854437114285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="24.515854437114285" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="22.064268993402862" width="2.451585443711428" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="22.064268993402862" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="22.064268993402862" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="22.064268993402862" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="41.67695254309428" y="22.064268993402862" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="46.58012343051713" y="22.064268993402862" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="53.934879761651416" y="22.064268993402862" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="22.064268993402862" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="22.064268993402862" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="22.064268993402862" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="19.612683549691425" width="2.451585443711428" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="19.612683549691425" width="7.354756331134286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="19.612683549691425" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="19.612683549691425" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="19.612683549691425" width="4.90317088742286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="46.58012343051713" y="19.612683549691425" width="9.806341774845713" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="19.612683549691425" width="12.257927218557143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="19.612683549691425" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="17.161098105980003" width="2.451585443711428" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="17.161098105980003" width="7.354756331134286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="17.161098105980003" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="17.161098105980003" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="17.161098105980003" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="39.22536709938285" y="17.161098105980003" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="17.161098105980003" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="63.741221536497136" y="17.161098105980003" width="12.257927218557143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="14.709512662268565" width="2.451585443711428" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="14.709512662268569" y="14.709512662268565" width="7.354756331134286" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="14.709512662268565" width="2.4515854437114264" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="31.870610768248568" y="14.709512662268565" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="44.12853798680571" y="14.709512662268565" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="56.386465205362846" y="14.709512662268565" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="61.289636092785706" y="14.709512662268565" width="2.45158544371143" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="68.64439242391998" y="14.709512662268565" width="7.354756331134283" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="78.4507341987657" y="14.709512662268565" width="2.451585443711423" height="2.45158544371143" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="12.257927218557143" width="2.451585443711428" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="24.51585443711428" y="12.257927218557143" width="2.4515854437114264" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="12.257927218557143" width="2.45158544371143" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="34.32219621195999" y="12.257927218557143" width="4.90317088742286" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="41.67695254309428" y="12.257927218557143" width="2.45158544371143" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="51.48329431793999" y="12.257927218557143" width="2.45158544371143" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="12.257927218557143" width="4.90317088742286" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="66.19280698020856" y="12.257927218557143" width="2.451585443711423" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="12.257927218557143" width="2.451585443711423" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="9.806341774845713" y="9.80634177484572" width="17.161098105979995" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="29.419025324537138" y="9.80634177484572" width="4.903170887422853" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="36.77378165567142" y="9.80634177484572" width="4.903170887422853" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="49.03170887422856" y="9.80634177484572" width="4.903170887422853" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="58.838050649074276" y="9.80634177484572" width="9.806341774845706" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="71.09597786763142" y="9.80634177484572" width="2.451585443711423" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-				<rect x="75.99914875505428" y="9.80634177484572" width="2.451585443711423" height="2.451585443711428" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
-			</g>
-		</g>
-	</g>
-</svg>
-    </a>
-    <div class="qr-text">Scannez pour accéder<br>au site officiel<br><strong>laulogistic.my.canva.site</strong></div>
+  <div class="reviews-section">
+    <div class="reviews-title">Témoignages</div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-quote">"Laurent a sauvé mon mariage. Arrivé en 1h après un désistement, matériel impeccable. Un vrai professionnel."</div>
+      <div class="review-meta">
+        <span class="review-author">Marie T.</span>
+        <span class="review-tag">Fiabilité</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-quote">"Une sonorisation limpide pour notre cérémonie. Chaque mot a été entendu, l'atmosphère était solennelle et parfaite."</div>
+      <div class="review-meta">
+        <span class="review-author">Jean-P.</span>
+        <span class="review-tag">Expertise</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Contact card -->
-  <div class="contact-card">
-    <div class="contact-top">
-      <div class="contact-name">Laurent Moïse</div>
-      <div class="contact-role">Laulogistic · 20 ans d'expérience</div>
+  <div class="contact-luxury">
+    <div class="contact-header">
+      <h3>Laurent Moïse</h3>
+      <p>Expert Coordination Son & Lumière</p>
     </div>
-    <div class="contact-lines">
-
-      <div class="c-line">
-        <div class="c-ico">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#c8a84b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div>
-          <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:1px;">WhatsApp</div>
-          <span class="c-val"><strong>06 73 69 17 20</strong></span>
+    <div class="contact-details">
+      <div class="detail-item">
+        <div class="detail-icon">📱</div>
+        <div class="detail-text">
+          <strong>WhatsApp</strong>
+          <span>06 73 69 17 20</span>
         </div>
       </div>
-
-      <div class="c-line">
-        <div class="c-ico">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="10" r="3" stroke="#c8a84b" stroke-width="1.6"/>
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#c8a84b" stroke-width="1.6"/>
-          </svg>
+      <div class="detail-item">
+        <div class="detail-icon">📍</div>
+        <div class="detail-text">
+          <strong>Localisation</strong>
+          <span>Fontenay-sous-Bois · IDF</span>
         </div>
-        <span class="c-val">Fontenay-sous-Bois · Île-de-France</span>
       </div>
-
-      <div class="c-line">
-        <div class="c-ico">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#c8a84b" stroke-width="1.6"/>
-            <polyline points="22,6 12,13 2,6" stroke="#c8a84b" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
+      <div class="detail-item">
+        <div class="detail-icon">✉️</div>
+        <div class="detail-text">
+          <strong>Email</strong>
+          <span>contact@laulogistic.com</span>
         </div>
-        <span class="c-val">contact@laulogistic.com</span>
       </div>
-
     </div>
-    <div class="siret-line">SIRET : 525 273 330 00031</div>
+    <div class="siret-footer">SIRET : 525 273 330 00031</div>
   </div>
 
-  <!-- Final CTA -->
-  <div class="final-cta">
-    <div class="final-cta-title">Gardez ce contact précieusement</div>
-    <div class="final-cta-body">Un besoin, un imprévu, une future fête — un appel suffit.<br>Proches, disponibles, prêts à intervenir.</div>
+  <div class="final-gold-cta">
+    <p>"Parce que votre événement mérite l'excellence."</p>
   </div>
-
-  <div class="stripe"></div>
+  <div class="gold-stripe"></div>
 </div>
 
 </body>
